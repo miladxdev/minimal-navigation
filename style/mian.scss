@@ -2,6 +2,7 @@ $primary-color: hotpink; // only change primary color
 $primary-color-light: rgba($primary-color, 0.2);
 $shadow-color: #e1e5ee;
 $text-color: black;
+$break-point: 768px;
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins:wght@300&display=swap");
 
@@ -151,6 +152,68 @@ nav {
     }
     &:active {
       transform: scale(0.98);
+    }
+  }
+}
+
+// ========================= RESPONSEVIE =========================
+
+// always show nav link and items above break point
+@media screen and(min-width: $break-point) {
+  nav {
+    .nav-list {
+      .nav-item {
+        display: flex !important;
+      }
+      .nav-link {
+        display: flex !important;
+      }
+    }
+  }
+}
+
+// hide nav link and items below break point and show toggle btn
+@media screen and(max-width: $break-point) {
+  nav {
+    padding: 1rem 0;
+    .nav-list {
+      display: block;
+      .nav-logo {
+        #nav-toggle {
+          display: block;
+        }
+      }
+      .nav-link {
+        padding: 1.5rem 0;
+        i {
+          position: absolute;
+          right: 1rem;
+          top: 1.8rem;
+        }
+        .nav-drop {
+          top: 1rem;
+          box-shadow: unset;
+          width: unset;
+          margin-left: -1rem;
+          opacity: 0;
+          visibility: hidden;
+        }
+        &:after {
+          top: 3em;
+          left: 0.08em;
+          transition: width 0.3s;
+        }
+        &:hover::after {
+          width: 4em;
+        }
+        &:hover {
+          ul {
+            position: relative;
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
     }
   }
 }
